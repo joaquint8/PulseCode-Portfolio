@@ -1,14 +1,17 @@
-import { Phone, MapPin, Clock, Send } from 'lucide-react';
+import React from 'react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useNavigation } from '../hooks/useNavigation';
 import { sendEmail } from '../services/emailService';
 import { showError, showLoading, showSuccess } from '../utils/alerts';
+import { TextHoverEffect } from './Footer';
+import { PointerHighlight } from '@/components/ui/pointer-highlight';
+import { Instagram } from 'lucide-react';
 
-const Contact = () => {
+const ContactFooter = () => {
   const { isDark } = useNavigation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     showLoading();
 
     sendEmail(e.target)
@@ -22,173 +25,184 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <section id="contacto" className="py-10 px-6">
-        <div className="max-w-7xl mx-auto">
+    <footer className={`w-full transition-colors ${isDark ? 'bg-black/80 border-white/10 text-white' : 'bg-slate-50 border-slate-200 text-slate-900'
+      }`}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Contenedor Grid Principal */}
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch border rounded-3xl p-8 md:p-12 overflow-hidden ${isDark ? 'bg-zinc-950/50 border-white/10' : 'bg-white border-slate-200 shadow-sm'
+          }`}>
 
-          {/* Header */}
-          <div className="text-left mb-16">
-            <span className="text-[#d4ff00] font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">
-              CONTACTO
-            </span>
-
-            <h2 className={`text-4xl font-extrabold tracking-tight mb-6 ${isDark ? 'text-white' : 'text-slate-900'
-              }`}>
-              ¿Tenés un <span className="text-[#d4ff00] italic">proyecto?</span>
-            </h2>
-
-            <p className={`${isDark ? 'text-gray-500' : 'text-slate-500'} text-base max-w-lg`}>
-              Contános tu idea y te respondemos en menos de 24 horas.
-            </p>
-          </div>
-
-          {/* Grid */}
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-
-            {/* Info */}
-            <div className="lg:col-span-4 space-y-8">
-              {[
-                {
-                  icon: Phone,
-                  label: "WhatsApp",
-                  value: [
-                    { text: "2324 520871", link: "https://wa.me/5492324520871" },
-                    { text: "2346 599278", link: "https://wa.me/5492346599278" }
-                  ]
-                },
-                { icon: MapPin, label: "Ubicación", value: "Chivilcoy, Buenos Aires" },
-                { icon: Clock, label: "Respuesta", value: "Menos de 24 horas" },
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 group">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
-                    }`}>
-                    <item.icon className="w-5 h-5 text-[#d4ff00]" />
-                  </div>
-
-                  <div>
-                    <p className="text-[9px] font-bold uppercase text-gray-500 tracking-widest mb-1">
-                      {item.label}
-                    </p>
-                    <div className={`text-base font-bold ${isDark ? 'text-white' : 'text-slate-900'
-                      }`}>
-                      {Array.isArray(item.value) ? (
-                        <div>
-                          {item.value.map((phone, i) => (
-                            <span key={i}>
-                              <a
-                                href={phone.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:text-[#d4ff00] transition-colors"
-                              >
-                                {phone.text}
-                              </a>
-                              {i < item.value.length - 1 && " - "}
-                            </span>
-                          ))}
-                        </div>
-                      ) : (
-                        item.value
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-            <img 
-              src="LogosinFondo.png" 
-              alt="PulseCode" 
-              className="h-60 w-auto object-contain" 
-            />
-            </div>
-            
-
-            {/* Form */}
-            <div className="lg:col-span-8">
-              <form
-                onSubmit={handleSubmit}
-                className={`glass-card p-8 md:p-10 rounded-[32px] space-y-8 ${!isDark && 'bg-slate-50'
-                  }`}
-              >
-                <div className="grid md:grid-cols-2 gap-6">
-
-                  {/* Nombre */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400 ml-1">
-                      Nombre
-                    </label>
-                    <input
-                      name="user_name"
-                      type="text"
-                      required
-                      placeholder="Tu nombre"
-                      className={`w-full border rounded-xl px-3 py-2 outline-none focus:border-[#d4ff00] transition-colors ${isDark
-                        ? 'bg-white/5 border-white/10 text-white placeholder:text-gray-600'
-                        : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-300'
-                        }`}
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400 ml-1">
-                      Email
-                    </label>
-                    <input
-                      name="user_email"
-                      type="email"
-                      required
-                      placeholder="correo@email.com"
-                      className={`w-full border rounded-xl px-3 py-2 outline-none focus:border-[#d4ff00] transition-colors ${isDark
-                        ? 'bg-white/5 border-white/10 text-white placeholder:text-gray-600'
-                        : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-300'
-                        }`}
-                    />
-                  </div>
-
-                </div>
-
-                {/* Mensaje */}
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400 ml-1">
-                    Mensaje
-                  </label>
-                  <textarea
-                    name="message"
-                    rows="5"
-                    required
-                    placeholder="Contános sobre tu proyecto..."
-                    className={`w-full border rounded-xl px-3 py-2 outline-none focus:border-[#d4ff00] transition-colors resize-none ${isDark
-                      ? 'bg-white/5 border-white/10 text-white placeholder:text-gray-600'
-                      : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-300'
-                      }`}
-                  ></textarea>
-                </div>
-
-                {/* Botón */}
-                <button
-                  type="submit"
-                  className="w-full bg-[#d4ff00] text-black py-3 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
+          {/* Columna Izquierda: Información de Contacto */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
+            <div>
+              <span className="text-[#d4ff00] font-bold text-[10px] uppercase tracking-[0.3em] mb-3 block">
+                CONTACTO
+              </span>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                ¿Tenés un{' '}
+                <PointerHighlight
+                  rectangleClassName="border-[#d4ff00]"
+                  pointerClassName="text-[#d4ff00]"
                 >
-                  <Send className="w-4 h-4" />
-                  Enviar mensaje
-                </button>
+                  <i className="relative z-10 px-1">proyecto?</i>
+                </PointerHighlight>
+              </h2>
+              <p className={`text-base leading-relaxed max-w-md ${isDark ? 'text-zinc-400' : 'text-slate-600'}`}>
+                Si tenés alguna duda sobre nuestros servicios o necesitás asesoramiento para tu proyecto, completá el formulario.
+              </p>
+            </div>
 
-              </form>
+            {/* Grid de Cards de Información */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              {/* Card Email */}
+              <div className={`flex items-start gap-4 p-4 rounded-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
+                }`}>
+                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'
+                  }`}>
+                  <Instagram className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-0.5">Instagram</p>
+                  <a href="https://www.instagram.com/pulsecode.software/" className="text-sm font-semibold hover:text-[#d4ff00] transition-colors block" target='blank'>
+                    pulsecode.software
+                  </a>
+                </div>
+              </div>
+
+              {/* Card WhatsApp / Teléfono */}
+              <div className={`flex items-start gap-4 p-4 rounded-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
+                }`}>
+                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'
+                  }`}>
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-0.5">WhatsApp</p>
+                  <a href="https://wa.me/5492324520871" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-[#d4ff00] transition-colors block">
+                    2324 520871
+                  </a>
+                  <a href="https://wa.me/5492346599278" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-[#d4ff00] transition-colors block">
+                    2346 599278
+                  </a>
+                </div>
+              </div>
+
+              {/* Card Ubicación */}
+              <div className={`flex items-start gap-4 p-4 rounded-2xl border sm:col-span-2 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
+                }`}>
+                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'
+                  }`}>
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-0.5">Ubicación</p>
+                  <p className="text-sm font-semibold">
+                    Chivilcoy, Buenos Aires, Argentina
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className={`py-8 px-6 border-t text-center ${isDark ? 'border-white/5' : 'border-slate-100'
-        }`}>
-        <p className="text-[10px] text-gray-500 uppercase tracking-[0.3em]">
-          © 2026 PulseCode • Custom Web Studio
-        </p>
-      </footer>
-    </>
+          {/* Columna Derecha: Formulario */}
+          <div className={`lg:col-span-6 lg:border-l lg:pl-12 flex flex-col justify-center ${isDark ? 'lg:border-white/10' : 'lg:border-slate-200'
+            }`}>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Nombre */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold tracking-wide text-gray-400">
+                  Nombre
+                </label>
+                <input
+                  name="user_name"
+                  type="text"
+                  required
+                  placeholder="Tu nombre completo"
+                  className={`w-full rounded-xl px-4 py-3 text-sm outline-none border transition-all ${isDark
+                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    }`}
+                />
+              </div>
+
+              {/* Email */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold tracking-wide text-gray-400">
+                  Email
+                </label>
+                <input
+                  name="user_email"
+                  type="email"
+                  required
+                  placeholder="correo@ejemplo.com"
+                  className={`w-full rounded-xl px-4 py-3 text-sm outline-none border transition-all ${isDark
+                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    }`}
+                />
+              </div>
+
+              {/* Teléfono */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold tracking-wide text-gray-400">
+                  Teléfono
+                </label>
+                <input
+                  name="user_phone"
+                  type="tel"
+                  placeholder="+54 9 2346..."
+                  className={`w-full rounded-xl px-4 py-3 text-sm outline-none border transition-all ${isDark
+                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    }`}
+                />
+              </div>
+
+              {/* Mensaje */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold tracking-wide text-gray-400">
+                  Mensaje
+                </label>
+                <textarea
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="¿En qué podemos ayudarte?"
+                  className={`w-full rounded-xl px-4 py-3 text-sm outline-none border resize-none transition-all ${isDark
+                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    }`}
+                ></textarea>
+              </div>
+
+              {/* Botón Enviar */}
+              <button
+                type="submit"
+                className="w-full bg-[#d4ff00] hover:bg-[#c2eb00] text-black font-bold py-3.5 px-6 rounded-xl text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-[#d4ff00]/10 mt-2"
+              >
+                <Send className="w-4 h-4" />
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        {/* Efecto de Texto PulseCode en Grande */}
+        <div className="w-full h-[10rem] md:h-[14rem] flex items-center justify-center mt-12">
+          <TextHoverEffect text="PulseCode" />
+        </div>
+
+        {/* Bottom Copyright Bar */}
+        <div className="border-t border-white/10 pt-8 mt-4 text-center">
+          <p className="text-[10px] text-gray-500 uppercase tracking-[0.3em]">
+            © 2026 PulseCode • Desarrollo de software
+          </p>
+        </div>
+
+      </div>
+    </footer>
   );
 };
 
-export default Contact;
+export default ContactFooter;

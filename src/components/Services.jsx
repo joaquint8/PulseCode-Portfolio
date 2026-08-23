@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigation } from '../hooks/useNavigation';
 import { services } from '../constants/servicesData';
 
@@ -5,22 +6,31 @@ const Services = () => {
   const { isDark } = useNavigation();
 
   return (
-    <section id="servicios" className={`pt-20 px-6 border-t ${isDark ? 'border-white/5' : 'border-white-100'}`}>
+    <section id="servicios" className="relative z-10 pt-8 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
-        <span className="text-[#d4ff00] font-bold text-xs uppercase tracking-[0.3em] mb-4 block">
-          Servicios
-        </span>
-        <h2 className="text-4xl font-extrabold mb-16 tracking-tight">
-          Servicios para diferenciarte
-        </h2>
         
+        {/* Encabezado arriba */}
+        <div className="mb-10 text-left">
+          <span className="text-[#d4ff00] font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block">
+            SERVICIOS
+          </span>
+          <h2 className={`text-3xl md:text-5xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            Servicios para diferenciarte
+          </h2>
+        </div>
+
+        {/* Grilla de Cards */}
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service) => (
             <div 
               key={service.id} 
-              className="glass-card p-6 rounded-[28px] group hover:border-[#d4ff00]/30 transition-all cursor-default"
+              className={`p-6 rounded-[28px] border transition-all cursor-default ${
+                isDark 
+                  ? 'bg-zinc-950/60 border-white/10 hover:border-[#d4ff00]/40' 
+                  : 'bg-white border-slate-200 hover:border-[#d4ff00]/40 shadow-sm'
+              }`}
             >
-              <span className="text-[12px] font-mono text-[#d4ff00] font-bold mb-6 block">
+              <span className="text-[12px] font-mono text-[#d4ff00] font-bold mb-4 block">
                 {service.id}
               </span>
 
@@ -28,12 +38,13 @@ const Services = () => {
                 {service.title}
               </h3>
 
-              <p className={`${isDark ? 'text-gray-500' : 'text-slate-500'} leading-relaxed text-sm`}>
+              <p className={`${isDark ? 'text-gray-400' : 'text-slate-600'} leading-relaxed text-sm`}>
                 {service.description}
               </p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

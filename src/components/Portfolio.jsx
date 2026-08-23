@@ -17,7 +17,8 @@ const Portfolio = () => {
           <span className="text-[#d4ff00] font-bold uppercase tracking-[0.3em] text-xs">
             Portafolio
           </span>
-          <h2 className={`text-3xl font-extrabold sm:text-4xl tracking-tight mb-12 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+
+          <h2 className={`text-3xl md:text-5xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
             Nuestros proyectos más recientes
           </h2>
         </div>

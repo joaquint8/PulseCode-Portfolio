@@ -1,70 +1,50 @@
-import { ArrowRight, MessageCircle } from 'lucide-react';
 import { useNavigation } from '../hooks/useNavigation';
 import { useScrollTo } from '../hooks/useScroll';
 import { useState } from 'react';
+import { ImagesBadge } from './ui/images-badge';
+import kazze from "../assets/kazzehome.png";
+import fyfhome from "../assets/fyfhome.png";
+import mydhome from "../assets/mydhome.png";
 
 const Hero = () => {
   const { isDark } = useNavigation();
-    const [isOpen, setIsOpen] = useState(false);
-  
-    const { scrollTo } = useScrollTo(() => setIsOpen(false));
+  const [isOpen, setIsOpen] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
+
+  const { scrollTo } = useScrollTo(() => setIsOpen(false));
 
   return (
-    <section id="inicio" className="pt-30 pb-24 px-4">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandLime/10 border border-brandLime/20 text-[#d4ff00] text-[10px] font-bold uppercase mb-8">
-            <span className="animate-pulse">✦</span> Custom web studio
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-[1.05] mb-8 tracking-tighter">
-            Diseñamos páginas web personalizadas que hacen crecer tu marca
-          </h1>
-          
-          <p className={`${isDark ? 'text-gray-400' : 'text-slate-600'} text-lg mb-10 max-w-lg leading-relaxed`}>
-            En PulseCode combinamos estrategia, diseño creativo y desarrollo a medida para crear experiencias web únicas.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            
-            <a 
-              onClick={(e) => scrollTo(e, "#contacto")} 
-              href="#contacto" 
-              className="flex-1 btn-lime px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:scale-101 transition-all text-black"
-            >
-              Solicitar presupuesto <ArrowRight className="w-5 h-5" />
-            </a>
-            
-            <a 
-              href="https://wa.me/5492324520871" 
-              className={`flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-2xl border transition-all font-bold ${
-                isDark ? 'border-white/10 hover:bg-white/5' : 'border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              <MessageCircle className="w-5 h-5 text-brandLime" /> WhatsApp
-            </a>
+    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center w-full">
+      <div>
+        <h1 className="text-5xl md:text-6xl font-extrabold leading-[1.05] my-8 tracking-tighter">
+          Diseñamos páginas web personalizadas que hacen crecer tu marca
+        </h1>
 
-          </div>
-        </div>
+        <p className={`${isDark ? 'text-gray-400' : 'text-slate-600'} text-lg mb-10 max-w-lg leading-relaxed`}>
+          En PulseCode combinamos estrategia, diseño creativo y desarrollo a medida para crear experiencias web únicas.
+        </p>
 
-        <div className="hidden lg:block relative group">
-          <div className={`aspect-[4/3] rounded-[48px] overflow-hidden border relative z-10 ${
-            isDark ? 'border-white/10 bg-gradient-to-br from-white/5 to-transparent' : 'border-slate-200 bg-slate-100'
-          }`}>
-            <img 
-              loading='lazy'
-              src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800" 
-              className="w-full h-full object-cover transition-all duration-700" 
-              alt="Web Design"
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            onClick={(e) => scrollTo(e, "#portafolio")}
+            href="#portafolio"
+            onMouseEnter={() => setIsCardHovered(true)}
+            onMouseLeave={() => setIsCardHovered(false)}
+            className="flex items-center justify-center gap-2 px-16 py-3.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 hover:scale-101 transition-all"
+          >
+            <ImagesBadge
+              text="Ver Proyectos"
+              images={[kazze, fyfhome, mydhome]}
+              forceHovered={isCardHovered}
+              className="text-white [&_span]:text-white [&_span]:font-semibold"
             />
-          </div>
-
-          {isDark && (
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-brandLime/5 blur-[100px] rounded-full"></div>
-          )}
+          </a>
         </div>
       </div>
-    </section>
+
+      {/* Espacio reservado para que el logo/objeto flotante ocupe este cuadrante en el Hero */}
+      <div className="hidden lg:block h-[400px] w-full" />
+    </div>
   );
 };
 

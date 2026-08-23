@@ -7,7 +7,7 @@ export const testimonials = [
   {
     name: "Andrés Guerrero",
     role: "Facilitador - Scrum Master en Morfeo Consultora",
-    text: "Excelente disposición y escucha activa para entender el problema; y una actitud ágil a la hora de resolverlo con efectividad y profesionalismo"
+    text: "Excelente disposición y escucha activa para entender el problema; y una actitud ágil a la hora de resolverlo con efectividad y profesionalismo."
   },
   {
     name: "Gerardo Miño",

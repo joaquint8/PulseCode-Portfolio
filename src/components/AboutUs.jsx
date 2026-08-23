@@ -36,9 +36,10 @@ const AboutUs = () => {
               <h4 className={`text-xl font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 Clara Miño
               </h4>
-              <p className="text-[#d4ff00] text-[10px] font-bold uppercase mb-4 tracking-widest py-1">
-                FullStack developer
-              </p>
+              <div className="text-[#d4ff00] text-[10px] font-bold uppercase mb-4 tracking-widest">
+                <p className='py-1'>FullStack developer</p>
+                <p>Técnica Universitaria en programación</p>
+              </div>
 
               <a
                 href="https://www.linkedin.com/in/clara-mino/"
