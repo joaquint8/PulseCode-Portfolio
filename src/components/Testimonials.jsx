@@ -26,7 +26,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonios" className={`py-12 md:py-24 px-4 sm:px-6 border-t ${isDark ? 'border-white/5' : 'border-slate-100'}`}>
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto">
         <span className="text-[#d4ff00] font-bold text-xs uppercase tracking-[0.3em] mb-3 md:mb-4 block">
           Testimonios
         </span>

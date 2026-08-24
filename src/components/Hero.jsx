@@ -17,7 +17,7 @@ const Hero = () => {
     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center w-full">
       <div>
         <h1 className="text-5xl md:text-6xl font-extrabold leading-[1.05] my-8 tracking-tighter">
-          Diseñamos páginas web personalizadas que hacen crecer tu marca
+          Diseñamos software personalizado para tu negocio
         </h1>
 
         <p className={`${isDark ? 'text-gray-400' : 'text-slate-600'} text-lg mb-10 max-w-lg leading-relaxed`}>

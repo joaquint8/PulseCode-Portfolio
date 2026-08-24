@@ -1,114 +1,114 @@
+import React from 'react';
+import { Linkedin } from 'lucide-react';
+import joaco from "../assets/joaco.jpeg";
+import clara from "../assets/clara.jpg";
 import { useNavigation } from '../hooks/useNavigation';
-import nosotros from "../assets/nosotros.jpeg";
- 
-const AboutUs = () => {
+import { cn } from '@/lib/utils';
+
+export default function AboutUs() {
   const { isDark } = useNavigation();
 
+  const members = [
+    {
+      name: "CLARA MIÑO",
+      designation: "FullStack Developer • Técnica Univ. en Programación",
+      imageSrc: clara,
+      socialLinks: [
+        { icon: Linkedin, href: "https://www.linkedin.com/in/clara-mino/" }
+      ]
+    },
+    {
+      name: "JOAQUIN PAVONE",
+      designation: "FullStack Developer • Técnico Informático",
+      imageSrc: joaco,
+      socialLinks: [
+        { icon: Linkedin, href: "https://www.linkedin.com/in/joaquin-pavone/" }
+      ]
+    }
+  ];
+
   return (
-    <section id="nosotros" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+    <section 
+      id="nosotros" 
 
-        <img
-          loading='lazy'
-          src={nosotros}
-          className="hidden lg:block w-full h-full object-cover rounded-[40px] transition-all duration-700"
-          alt="Equipo PulseCode"
-        />
+    >
 
-        <div>
-          <span className="text-[#d4ff00] font-bold text-xs uppercase tracking-[0.3em] mb-4 block">
-            Equipo
-          </span>
-
-          <h2 className={`text-4xl font-extrabold mb-8 tracking-tighter leading-tight ${isDark ? 'text-white' : 'text-slate-900'
-            }`}>
-            Somos PulseCode: un enfoque obsesivo por el detalle
-          </h2>
-
-          <p className={`text-lg mb-12 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
-           Transformamos ideas en páginas web modernas, rápidas y seguras.
-          </p>
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {/* Tarjeta Clara */}
-            <div className={`glass-card p-8 rounded-[32px] border-l-4 border-l-brandPurple flex flex-col items-start ${!isDark && 'bg-slate-50'
-              }`}>
-              <h4 className={`text-xl font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Clara Miño
-              </h4>
-              <div className="text-[#d4ff00] text-[10px] font-bold uppercase mb-4 tracking-widest">
-                <p className='py-1'>FullStack developer</p>
-                <p>Técnica Universitaria en programación</p>
-              </div>
-
-              <a
-                href="https://www.linkedin.com/in/clara-mino/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#0077b5] transition-all group"
-              >
-                {/* SVG de LinkedIn */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="group-hover:fill-[#0077b5] group-hover:stroke-[#0077b5] transition-colors align-middle"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-                <span className="leading-none">LinkedIn</span>
-              </a>
-            </div>
-
-            {/* Tarjeta Joaquin */}
-            <div className={`glass-card p-8 rounded-[32px] border-l-4 border-l-brandLime flex flex-col items-start ${!isDark && 'bg-slate-50'
-              }`}>
-              <h4 className={`text-xl font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Joaquin Pavone
-              </h4>
-              <div className="text-[#d4ff00] text-[10px] font-bold uppercase mb-4 tracking-widest">
-                <p className='py-1'>FullStack developer</p>
-                <p>Técnico Informático</p>
-              </div>
-              <a
-                href="https://www.linkedin.com/in/joaquin-pavone/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-[#0077b5] transition-all group"
-              >
-                {/* SVG de LinkedIn */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="group-hover:fill-[#0077b5] group-hover:stroke-[#0077b5] transition-colors align-middle"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-                <span className="leading-none">LinkedIn</span>
-              </a>
-            </div>
+      <div className="container relative z-10 mx-auto grid items-center justify-center gap-12 px-4 md:px-6">
+        
+        {/* Header Section */}
+        <div className="flex w-full flex-col items-center justify-between gap-6 text-center md:flex-row md:items-end md:text-left">
+          <div className="grid gap-2">
+            <span className="text-[#d4ff00] font-bold text-xs tracking-[0.3em] uppercase">
+              ¿QUIENES SOMOS?
+            </span>
+            <h2 className="text-3xl font-extrabold tracking-tighter sm:text-4xl md:text-5xl">
+              Somos <span className="text-[#d4ff00]">PulseCode</span>
+            </h2>
+            <p className={cn("max-w-[600px] text-base md:text-lg", isDark ? "text-gray-400" : "text-slate-600")}>
+              Transformamos ideas en sistemas modernos, rápidos y seguros.
+            </p>
           </div>
         </div>
+
+        {/* Team Members Grid */}
+        <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+          {members.map((member, index) => (
+            <div
+              key={index}
+              className={cn(
+                "group relative flex flex-col items-center justify-end overflow-hidden rounded-2xl p-8 text-center border transition-all duration-300 hover:scale-[1.02]",
+                isDark 
+                  ? "bg-white/5 border-white/10 hover:border-[#d4ff00]/40 shadow-2xl" 
+                  : "bg-white border-slate-200 shadow-lg hover:shadow-xl"
+              )}
+            >
+              {/* Background wave animation */}
+              <div
+                className="absolute bottom-0 left-0 right-0 h-1/2 origin-bottom scale-y-0 rounded-t-full bg-gradient-to-t from-[#d4ff00]/20 to-transparent transition-transform duration-500 ease-out group-hover:scale-y-100"
+                style={{ transitionDelay: `${index * 50}ms` }}
+              />
+
+              {/* Member Image with mask and border animation */}
+              <div
+                className="relative z-10 h-36 w-36 overflow-hidden rounded-full border-4 border-transparent bg-background/20 transition-all duration-500 ease-out group-hover:border-[#d4ff00] group-hover:scale-105"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <img
+                  src={member.imageSrc}
+                  alt={member.name}
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                />
+              </div>
+
+              <h3 className="relative z-10 mt-6 text-xl font-bold tracking-tight">
+                {member.name}
+              </h3>
+              
+              <p className={cn("relative z-10 mt-1 text-xs font-semibold uppercase tracking-wider", isDark ? "text-gray-400" : "text-slate-500")}>
+                {member.designation}
+              </p>
+
+              {/* Social Links */}
+              {member.socialLinks && (
+                <div className="relative z-10 mt-6 flex gap-4 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                  {member.socialLinks.map((link, linkIndex) => (
+                    <a
+                      key={linkIndex}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-[#0077b5] transition-colors"
+                    >
+                      <link.icon className="h-5 w-5" />
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
-};
-
-export default AboutUs;
+}

@@ -14,7 +14,7 @@ export function ImagesBadge({
   hoverTranslateY = -35,
   hoverSpread = 20,
   hoverRotation = 15,
-  forceHovered, // 👈 prop opcional: si viene, controla el hover desde afuera
+  forceHovered
 }) {
   const [internalHovered, setInternalHovered] = useState(false);
 

@@ -7,6 +7,7 @@ import Services from "../Services";
 import Portfolio from "../Portfolio";
 import AboutUs from "../AboutUs";
 import Testimonials from "../Testimonials";
+import TestimonialCard from "../TestimonialCard";
 
 export function ScrollVisualLanding({
     sections,
@@ -123,7 +124,9 @@ export function ScrollVisualLanding({
                         {section.id === "equipo" && <AboutUs />}
 
                         {/* Sección testimonios */}
-                        {section.id === "testimonios" && <Testimonials />}
+                        {section.id === "testimonios" && <TestimonialCard />}
+
+                        
 
                         {/* Sección contacto */}
                         {section.id === "contacto" && <Contact />}
