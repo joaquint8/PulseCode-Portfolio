@@ -6,17 +6,17 @@ export const services = [
   },
   {
     id: "02",
-    title: "Desarrollo web a medida",
-    description: "Creamos sitios rápidos, escalables y optimizados con tecnologías modernas adaptadas a tu negocio."
+    title: "Desarrollo de software a medida",
+    description: "Creamos Software, Webs y Web Apps, escalables y optimizados con tecnologías modernas adaptadas a tu negocio."
   },
   {
     id: "03",
     title: "Landing pages",
-    description: "Diseñamos páginas específicas para campañas o eventos que convierten visitas en clientes."
+    description: "Diseñamos páginas específicas para campañas o eventos."
   },
   {
     id: "04",
-    title: "Optimización SEO & rendimiento",
+    title: "Optimización SEO & Rendimiento",
     description: "Mejoramos la velocidad, estructura y posicionamiento para que tu web destaque en Google."
   }
 ];

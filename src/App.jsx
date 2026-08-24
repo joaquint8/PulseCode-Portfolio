@@ -1,24 +1,46 @@
-import HomePage from "./pages/HomePage";
+import Navbar from './components/Navbar';
+import { ScrollVisualLanding } from './components/ui/landing-page';
+import PulseLogo from './components/ui/pulse-logo';
+import { useNavigation } from './hooks/useNavigation';
+import { cn } from '@/lib/utils';
 
-function App() {
+export const sections = [
+  { id: "inicio" },
+  { id: "servicios" },
+  { id: "portafolio" },
+  { id: "equipo" },
+  { id: "testimonios" },
+  { id: "contacto" }
+];
+
+export default function Home() {
+  const { isDark } = useNavigation();
+
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#030712] text-white">
-
-      {/* FONDO CON GRADIENTES */}
-      <div className="absolute inset-0 -z-10 
-        bg-[radial-gradient(circle_at_10%_10%,rgba(212,255,0,0.15),transparent_30%),
-             radial-gradient(circle_at_90%_20%,rgba(37,99,235,0.15),transparent_30%),
-             radial-gradient(circle_at_50%_90%,rgba(255,59,48,0.1),transparent_40%)]">
+    <div className={cn(
+      "relative min-h-screen w-full transition-colors duration-300",
+      isDark ? "bg-black text-white" : "bg-slate-50 text-slate-900"
+    )}>
+      {/* Pattern de fondo fino y sutil */}
+      <div className="pointer-events-none fixed inset-0 z-20 opacity-5">
+        <svg className="h-full w-full" fill="none">
+          <defs>
+            <pattern id="global-grid-pattern" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <path d="M32 0L0 0 0 32" fill="none" stroke="currentColor" strokeWidth="0.3" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#global-grid-pattern)" />
+        </svg>
       </div>
 
-      {/* ORBS (luces) */}
-      <div className="absolute -left-20 top-0 w-[250px] h-[250px] opacity-20 blur-[100px] md:-left-40 md:w-[500px] md:h-[500px] md:opacity-30 md:blur-[160px] bg-[#d4ff00] rounded-full"></div>
-
-      <div className="absolute right-0 top-40 w-96 h-96 bg-blue-500/20 blur-[140px] rounded-full"></div>
-
-      <HomePage />
+      {/* Contenido Landing (z-10) */}
+      <div className="relative z-10">
+        <Navbar />
+        <ScrollVisualLanding
+          sections={sections}
+          visualContent={<PulseLogo />}
+        />
+      </div>
     </div>
   );
 }
-
-export default App;

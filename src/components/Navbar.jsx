@@ -1,10 +1,10 @@
-import { Sun, Moon, Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useNavigation } from '../hooks/useNavigation';
 import { useState } from 'react';
 import { useScrollTo } from '../hooks/useScroll';
 
 const Navbar = () => {
-  const { isDark, lang, toggleTheme, toggleLang, t } = useNavigation();
+  const { t } = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
 
   const { scrollTo } = useScrollTo(() => setIsOpen(false));
@@ -18,9 +18,9 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#inicio" className="flex items-center h-full">
             <img 
-              src="LogosinFondo.png" 
+              src="LogosinFondo3.png" 
               alt="PulseCode" 
-              className="h-30 w-auto object-contain" 
+              className="h-20 w-auto object-contain" 
             />
           </a>
 
@@ -38,12 +38,12 @@ const Navbar = () => {
             {/* Botón SOLO desktop */}
             <a 
               href="#contacto" 
-              className="hidden lg:block btn-lime px-6 py-2.5 rounded-xl font-bold text-xs hover:scale-105 transition-transform"
+              className="hidden lg:block btn-lime px-6 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-101 transition-all text-black text-xs"
             >
               {t.btn}
             </a>
 
-            {/* Hamburguesa (solo mobile) */}
+            {/* (solo mobile) */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2"
