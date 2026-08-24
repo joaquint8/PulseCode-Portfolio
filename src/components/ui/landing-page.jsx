@@ -58,13 +58,11 @@ export function ScrollVisualLanding({
         const fadeThreshold = viewportHeight * 0.6;
         const rawRatio = Math.min(Math.max(scrollTop / fadeThreshold, 0), 1);
 
-        // Curva de salida: opacidad cae, sube el blur y agrega una leve rotación
-        // para que se sienta como que el elemento se "aleja" en vez de solo desvanecer.
         const opacity = Math.max(1 - Math.pow(rawRatio, 1.5), 0);
         const translateY = -rawRatio * 120;
         const scale = 1 - rawRatio * 0.15;
-        const blur = rawRatio * 10; // hasta 10px de blur al desaparecer
-        const rotate = rawRatio * 8; // hasta 8 grados de rotación al desaparecer
+        const blur = rawRatio * 10;
+        const rotate = rawRatio * 8;
 
         setHeroVisualStyles({
             opacity: Number(opacity.toFixed(3)),
@@ -124,17 +122,18 @@ export function ScrollVisualLanding({
                 />
             </div>
 
-            {/* Floating Visual Element */}
+            {/* Floating Visual Element — solo en lg+, en mobile el Hero no le reserva espacio
+                (ver "hidden lg:block" en Hero.jsx) así que mostrarlo ahí lo superpondría al texto */}
             <div
                 className={cn(
-                    "fixed top-1/2 left-[72%] max-lg:left-1/2 z-10 pointer-events-none will-change-transform",
+                    "hidden lg:block fixed top-1/2 left-[72%] z-10 pointer-events-none will-change-transform",
                     !isLoaded
                         ? "opacity-0 transition-all duration-[1100ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]"
                         : "opacity-100 transition-none"
                 )}
                 style={isLoaded ? heroVisualStyles : undefined}
             >
-                <div className="scale-75 sm:scale-90 lg:scale-100 relative group">
+                <div className="relative group">
                     {/* Anillo de pulso: se monta y desmonta solo, no queda residuo */}
                     {showPulseRing && (
                         <div className="absolute -inset-2 rounded-2xl pointer-events-none border border-[#d4ff00]/50 animate-[pulseRing_1s_ease-out_1]" />

@@ -1,6 +1,6 @@
 import { useNavigation } from '../hooks/useNavigation';
 import { useScrollTo } from '../hooks/useScroll';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ImagesBadge } from './ui/images-badge';
 import kazze from "../assets/kazzehome.png";
 import fyfhome from "../assets/fyfhome.png";
@@ -10,6 +10,22 @@ const Hero = () => {
   const { isDark } = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
   const [isCardHovered, setIsCardHovered] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSizeAndAnimate = () => {
+      if (window.innerWidth < 1024) {
+        // Esperamos a que termine la animación de la cortina (aprox 500ms-600ms)
+        const timer = setTimeout(() => {
+          setIsCardHovered(true);
+        }, 600);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    checkScreenSizeAndAnimate();
+    window.addEventListener('resize', checkScreenSizeAndAnimate);
+    return () => window.removeEventListener('resize', checkScreenSizeAndAnimate);
+  }, []);
 
   const { scrollTo } = useScrollTo(() => setIsOpen(false));
 
@@ -28,8 +44,12 @@ const Hero = () => {
           <a
             onClick={(e) => scrollTo(e, "#portafolio")}
             href="#portafolio"
-            onMouseEnter={() => setIsCardHovered(true)}
-            onMouseLeave={() => setIsCardHovered(false)}
+            onMouseEnter={() => {
+              if (window.innerWidth >= 1024) setIsCardHovered(true);
+            }}
+            onMouseLeave={() => {
+              if (window.innerWidth >= 1024) setIsCardHovered(false);
+            }}
             className="flex items-center justify-center gap-2 px-16 py-3.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 hover:scale-101 transition-all"
           >
             <ImagesBadge
