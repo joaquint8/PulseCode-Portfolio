@@ -18,9 +18,9 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#inicio" className="flex items-center h-full">
             <img 
-              src="LogosinFondo3.png" 
+              src="LogosinFondo4.png" 
               alt="PulseCode" 
-              className="h-20 w-auto object-contain" 
+              className="h-30 w-auto object-contain" 
             />
           </a>
 
