@@ -13,16 +13,6 @@ export const sections = [
   { id: "contacto" }
 ];
 
-const pulseCodeConfig = {
-  positions: [
-    { top: "50%", left: "72%", scale: 1.1 },
-    { top: "30%", left: "50%", scale: 0.8 },
-    { top: "50%", left: "80%", scale: 1.2 },
-    { top: "45%", left: "20%", scale: 1.0 },
-    { top: "140%", left: "50%", scale: 0.8 },
-  ]
-};
-
 export default function Home() {
   const { isDark } = useNavigation();
 
@@ -48,7 +38,6 @@ export default function Home() {
         <Navbar />
         <ScrollVisualLanding
           sections={sections}
-          globeConfig={pulseCodeConfig}
           visualContent={<PulseLogo />}
         />
       </div>
