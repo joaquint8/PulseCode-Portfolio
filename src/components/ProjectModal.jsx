@@ -62,12 +62,14 @@ const ProjectModal = ({ project, onClose }) => {
           {media.length > 1 && (
             <>
               <button
+                aria-label="Slide anterior"
                 onClick={prevSlide}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all text-white border border-white/10"
               >
                 <ChevronLeft className="w-7 h-7" />
               </button>
               <button
+                aria-label="Slide siguiente"
                 onClick={nextSlide}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all text-white border border-white/10"
               >
@@ -81,6 +83,7 @@ const ProjectModal = ({ project, onClose }) => {
         <div className="p-12 flex flex-col justify-between relative bg-white/5">
           <button
             onClick={handleClose}
+            aria-label="Cerrar modal"
             className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors"
           >
             <X className="w-8 h-8 cursor-pointer" />

@@ -177,6 +177,7 @@ const ContactFooter = () => {
 
               {/* Botón Enviar */}
               <button
+                aria-label="Enviar mensaje"
                 type="submit"
                 className="w-full bg-[#d4ff00] hover:bg-[#c2eb00] text-black font-bold py-3.5 px-6 rounded-xl text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-[#d4ff00]/10 mt-2"
               >

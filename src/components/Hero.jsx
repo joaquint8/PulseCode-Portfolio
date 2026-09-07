@@ -2,9 +2,9 @@ import { useNavigation } from '../hooks/useNavigation';
 import { useScrollTo } from '../hooks/useScroll';
 import { useState, useEffect } from 'react';
 import { ImagesBadge } from './ui/images-badge';
-import kazze from "../assets/kazzehome.png";
-import fyfhome from "../assets/fyfhome.png";
-import mydhome from "../assets/mydhome.png";
+import kazze from "../assets/kazzehome.webp";
+import fyfhome from "../assets/fyfhome.webp";
+import mydhome from "../assets/mydhome.webp";
 
 const Hero = () => {
   const { isDark } = useNavigation();

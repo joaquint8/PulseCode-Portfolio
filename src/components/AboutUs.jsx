@@ -1,7 +1,7 @@
 import React from 'react';
 import { Linkedin } from 'lucide-react';
-import joaco from "../assets/joaco.jpeg";
-import clara from "../assets/clara.jpg";
+import joaco from "../assets/joaco.webp";
+import clara from "../assets/clara.webp";
 import { useNavigation } from '../hooks/useNavigation';
 import { cn } from '@/lib/utils';
 

@@ -1,7 +1,7 @@
-import cristian from "../assets/cristian.png";
-import gerardo from "../assets/gerardo.jpg";
-import matias from "../assets/matias.jpg";
-import andres from "../assets/andres.jpg";
+import cristian from "../assets/cristian.webp";
+import gerardo from "../assets/gerardo.webp";
+import matias from "../assets/matias.webp";
+import andres from "../assets/andres.webp";
 
 export const testimonials = [
   {

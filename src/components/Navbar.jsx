@@ -47,6 +47,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2"
+              aria-label="Abrir menú de navegación"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
