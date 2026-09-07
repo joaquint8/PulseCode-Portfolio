@@ -26,7 +26,6 @@ export function ScrollVisualLanding({
 
     const animationFrameId = useRef();
 
-    // Secuencia de entrada: cortina se abre, luego el visual "aterriza"
     useEffect(() => {
         const curtainTimer = setTimeout(() => setCurtainOpen(true), 80);
         const loadTimer = setTimeout(() => setIsLoaded(true), 420);
@@ -36,8 +35,6 @@ export function ScrollVisualLanding({
         };
     }, []);
 
-    // El anillo se monta solo mientras dura su animación, después se elimina del DOM
-    // por completo — así no puede "reaparecer" con su estado base.
     useEffect(() => {
         if (!isLoaded) return;
         setShowPulseRing(true);
@@ -98,7 +95,6 @@ export function ScrollVisualLanding({
     return (
         <div className={cn("relative w-full overflow-x-hidden min-h-screen flex flex-col bg-black text-white", className)}>
 
-            {/* Cortina de entrada */}
             <div className="fixed inset-0 z-[60] pointer-events-none flex" aria-hidden="true">
                 <div
                     className="h-full w-1/2 bg-black transition-transform duration-[400ms] ease-[cubic-bezier(0.83,0,0.17,1)]"
@@ -122,8 +118,6 @@ export function ScrollVisualLanding({
                 />
             </div>
 
-            {/* Floating Visual Element — solo en lg+, en mobile el Hero no le reserva espacio
-                (ver "hidden lg:block" en Hero.jsx) así que mostrarlo ahí lo superpondría al texto */}
             <div
                 className={cn(
                     "hidden lg:block fixed top-1/2 left-[72%] z-10 pointer-events-none will-change-transform",
@@ -134,12 +128,10 @@ export function ScrollVisualLanding({
                 style={isLoaded ? heroVisualStyles : undefined}
             >
                 <div className="relative group">
-                    {/* Anillo de pulso: se monta y desmonta solo, no queda residuo */}
                     {showPulseRing && (
                         <div className="absolute -inset-2 rounded-2xl pointer-events-none border border-[#d4ff00]/50 animate-[pulseRing_1s_ease-out_1]" />
                     )}
 
-                    {/* Glow sutil, ligado a la opacidad de scroll */}
                     <div
                         className="absolute -inset-3 bg-[#d4ff00]/4 rounded-2xl blur-2xl pointer-events-none transition-opacity duration-300 -z-10"
                         style={{ opacity: heroVisualStyles.opacity }}
