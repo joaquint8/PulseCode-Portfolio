@@ -22,7 +22,7 @@ const Navbar = () => {
               {/* Imagen para mobile (pantallas menores a 1024px) */}
               <source
                 media="(max-width: 1023px)"
-                srcSet="LogosinFondoMobile.webp"
+                srcSet="LogosinFondo4Mobile.png"
               />
               {/* Imagen por defecto para Desktop (1024px o más) */}
               <img
@@ -32,7 +32,7 @@ const Navbar = () => {
                 height="60"
                 fetchPriority="high"
                 decoding="async"
-                className="h-14 w-auto object-contain"
+                className="h-30 w-auto object-contain"
               />
             </picture>
           </a>
