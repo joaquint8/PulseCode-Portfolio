@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
-import { ScrollVisualLanding } from './components/ui/landing-page';
 import PulseLogo from './components/ui/pulse-logo';
+import { ScrollVisualLanding } from './components/ui/landing-page';
 import { useNavigation } from './hooks/useNavigation';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +22,7 @@ export default function Home() {
       isDark ? "bg-black text-white" : "bg-slate-50 text-slate-900"
     )}>
       {/* Pattern de fondo fino y sutil */}
-      <div className="pointer-events-none fixed inset-0 z-20 opacity-5">
+      <div className="pointer-events-none fixed inset-0 z-20 opacity-10">
         <svg className="h-full w-full" fill="none">
           <defs>
             <pattern id="global-grid-pattern" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
@@ -36,10 +36,12 @@ export default function Home() {
       {/* Contenido Landing (z-10) */}
       <div className="relative z-10">
         <Navbar />
-        <ScrollVisualLanding
-          sections={sections}
-          visualContent={<PulseLogo />}
-        />
+        <main>
+          <ScrollVisualLanding
+            sections={sections}
+            visualContent={<PulseLogo />}
+          />
+        </main>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Quote } from 'lucide-react';
+import Quote from 'lucide-react/dist/esm/icons/quote';
 import { testimonials } from '../constants/testimonialsData';
 
 function TiltTestimonialCard({ item }) {
@@ -109,6 +109,10 @@ function TiltTestimonialCard({ item }) {
           className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover border border-white/10 shrink-0"
           src={item.image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256"}
           alt={item.name}
+          width="44"
+          height="44"
+          loading="lazy"
+          decoding="async"
         />
         <div>
           <h4 className="text-sm font-bold text-white leading-snug">{item.name}</h4>
@@ -188,16 +192,19 @@ export default function TestimonialCards() {
         </div>
       </div>
 
-      <div className="flex lg:hidden justify-center items-center gap-2 mt-4">
+      <div className="flex lg:hidden justify-center items-center gap-1 mt-2">
         {Array.from({ length: mobileSlideCount }).map((_, index) => (
           <button
             key={index}
             onClick={() => scrollToIndex(index)}
             aria-label={`Ir al testimonio ${index + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              activeIndex === index ? 'w-6 bg-[#d4ff00]' : 'w-1.5 bg-white/20'
-            }`}
-          />
+            className="p-3 inline-flex items-center justify-center min-w-[44px] min-h-[44px] focus:outline-none"
+          >
+            <span
+              className={`h-1.5 rounded-full transition-all duration-300 block ${activeIndex === index ? 'w-6 bg-[#d4ff00]' : 'w-1.5 bg-white/20'
+                }`}
+            />
+          </button>
         ))}
       </div>
     </div>

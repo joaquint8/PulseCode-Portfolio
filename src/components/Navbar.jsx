@@ -1,4 +1,5 @@
-import { Menu, X } from 'lucide-react';
+import Menu from 'lucide-react/dist/esm/icons/menu';
+import X from 'lucide-react/dist/esm/icons/x';
 import { useNavigation } from '../hooks/useNavigation';
 import { useState } from 'react';
 import { useScrollTo } from '../hooks/useScroll';
@@ -16,12 +17,24 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
 
           {/* Logo */}
-          <a href="#inicio" className="flex items-center h-full">
-            <img 
-              src="LogosinFondo4.png" 
-              alt="PulseCode" 
-              className="h-30 w-auto object-contain" 
-            />
+          <a href="#inicio" className="flex min-h-11 items-center h-full">
+            <picture>
+              {/* Imagen para mobile (pantallas menores a 1024px) */}
+              <source
+                media="(max-width: 1023px)"
+                srcSet="LogosinFondoMobile.webp"
+              />
+              {/* Imagen por defecto para Desktop (1024px o más) */}
+              <img
+                src="LogosinFondo4.png"
+                alt="PulseCode"
+                width="180"
+                height="60"
+                fetchPriority="high"
+                decoding="async"
+                className="h-14 w-auto object-contain"
+              />
+            </picture>
           </a>
 
           {/* Links Desktop */}
@@ -34,10 +47,11 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            
+
             {/* Botón SOLO desktop */}
-            <a 
-              href="#contacto" 
+            <a
+              onClick={(e) => scrollTo(e, "#contacto")}
+              href="#contacto"
               className="hidden lg:block btn-lime px-6 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-101 transition-all text-black text-xs"
             >
               {t.btn}
@@ -46,7 +60,7 @@ const Navbar = () => {
             {/* (solo mobile) */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2"
+              className="lg:hidden min-h-11 min-w-11 p-2"
               aria-label="Abrir menú de navegación"
             >
               {isOpen ? <X /> : <Menu />}
@@ -68,8 +82,8 @@ const Navbar = () => {
           <a onClick={(e) => scrollTo(e, "#contacto")} href="#contacto" className="text-xs font-bold opacity-70 hover:opacity-100 transition-opacity uppercase tracking-widest">{t.n5}</a>
 
           <a
-            href="#contacto"
             onClick={(e) => scrollTo(e, "#contacto")}
+            href="#contacto"
             className="btn-lime px-6 py-3 rounded-xl font-bold text-xs flex items-center justify-center"
           >
             {t.btn}

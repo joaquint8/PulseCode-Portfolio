@@ -2,11 +2,13 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import Hero from "@/components/Hero";
 import { FooterBackgroundGradient } from "../Footer";
-import Contact from "../Contact";
-import Services from "../Services";
-import Portfolio from "../Portfolio";
-import AboutUs from "../AboutUs";
-import TestimonialCard from "../TestimonialCard";
+import { Suspense, lazy } from "react";
+
+const Contact = lazy(() => import("../Contact"));
+const Services = lazy(() => import("../Services"));
+const Portfolio = lazy(() => import("../Portfolio"));
+const AboutUs = lazy(() => import("../AboutUs"));
+const TestimonialCard = lazy(() => import("../TestimonialCard"));
 
 export function ScrollVisualLanding({
     sections,
@@ -150,11 +152,32 @@ export function ScrollVisualLanding({
                         className="relative min-h-screen flex flex-col justify-center px-6 lg:px-12 z-20 py-8"
                     >
                         {section.id === "inicio" && <Hero />}
-                        {section.id === "servicios" && <Services />}
-                        {section.id === "portafolio" && <Portfolio />}
-                        {section.id === "equipo" && <AboutUs />}
-                        {section.id === "testimonios" && <TestimonialCard />}
-                        {section.id === "contacto" && <Contact />}
+
+                        {section.id === "servicios" && (
+                            <Suspense fallback={null}>
+                                <Services />
+                            </Suspense>
+                        )}
+                        {section.id === "portafolio" && (
+                            <Suspense fallback={null}>
+                                <Portfolio />
+                            </Suspense>
+                        )}
+                        {section.id === "equipo" && (
+                            <Suspense fallback={null}>
+                                <AboutUs />
+                            </Suspense>
+                        )}
+                        {section.id === "testimonios" && (
+                            <Suspense fallback={null}>
+                                <TestimonialCard />
+                            </Suspense>
+                        )}
+                        {section.id === "contacto" && (
+                            <Suspense fallback={null}>
+                                <Contact />
+                            </Suspense>
+                        )}
                     </section>
                 ))}
             </div>

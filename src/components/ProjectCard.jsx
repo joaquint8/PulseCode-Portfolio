@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
 import { useNavigation } from '../hooks/useNavigation';
 
 export const ProjectCard = ({ project, onClick }) => {
@@ -17,6 +17,10 @@ export const ProjectCard = ({ project, onClick }) => {
       <div className="aspect-[5/3] overflow-hidden relative">
         <img 
           alt={project.title} 
+          width="800"
+          height="480"
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
           src={project.image} 
         />
@@ -34,9 +38,9 @@ export const ProjectCard = ({ project, onClick }) => {
         
         {/* Título y Categoría (Estilo Badge "Ventas") aprovechando todo el ancho */}
         <div className="flex items-center justify-between gap-2">
-          <h4 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+          <h3 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {project.title}
-          </h4>
+          </h3>
           
           {/* Badge de categoría */}
           {project.category && (

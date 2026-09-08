@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Phone, MapPin, Send } from 'lucide-react';
 import { useNavigation } from '../hooks/useNavigation';
 import { sendEmail } from '../services/emailService';
 import { showError, showLoading, showSuccess } from '../utils/alerts';
@@ -10,18 +10,15 @@ import { Instagram } from 'lucide-react';
 const ContactFooter = () => {
   const { isDark } = useNavigation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    showLoading();
-
-    sendEmail(e.target)
-      .then(() => {
-        showSuccess();
-        e.target.reset();
-      })
-      .catch(() => {
-        showError();
-      });
+    await showLoading();
+    try {
+      await sendEmail(e.target);
+      await showSuccess();
+    } catch (err) {
+      await showError();
+    }
   };
 
   return (
@@ -54,53 +51,71 @@ const ContactFooter = () => {
 
             {/* Grid de Cards de Información */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              {/* Card Email */}
-              <div className={`flex items-start gap-4 p-4 rounded-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
-                }`}>
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'
-                  }`}>
+              {/* Card Instagram */}
+              <div className={`flex items-center gap-4 p-4 rounded-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'}`}>
                   <Instagram className="w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-0.5">Instagram</p>
-                  <a href="https://www.instagram.com/pulsecode.software/" className="text-sm font-semibold hover:text-[#d4ff00] transition-colors block" target='blank'>
+                  <a
+                    href="https://www.instagram.com/pulsecode.software/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-semibold hover:text-[#d4ff00] transition-colors inline-flex items-center min-h-[44px] -my-2"
+                    aria-label="Ir al perfil de Instagram de PulseCode"
+                  >
                     pulsecode.software
                   </a>
                 </div>
               </div>
 
               {/* Card WhatsApp / Teléfono */}
-              <div className={`flex items-start gap-4 p-4 rounded-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
-                }`}>
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'
-                  }`}>
-                  <Phone className="w-5 h-5" />
+              <div className={`flex items-center gap-4 p-4 rounded-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'}`}>
+                  <Phone className="w-5 h-5 flex-shrink-0" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-0.5">WhatsApp</p>
-                  <a href="https://wa.me/5492324520871" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-[#d4ff00] transition-colors block">
-                    2324 520871
-                  </a>
-                  <a href="https://wa.me/5492346599278" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-[#d4ff00] transition-colors block">
-                    2346 599278
-                  </a>
+
+                  <div className="flex min-w-0 flex-col items-start">
+                    <a
+                      href="https://wa.me/5492324520871"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="whitespace-nowrap text-[11px] sm:text-xs font-semibold hover:text-[#d4ff00] transition-colors inline-flex items-center min-h-[44px] -my-2"
+                      aria-label="Contactar por WhatsApp al 2324 520871"
+                    >
+                      2324 520871
+                    </a>
+
+                    <a
+                      href="https://wa.me/5492346599278"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="whitespace-nowrap text-[11px] sm:text-xs font-semibold hover:text-[#d4ff00] transition-colors inline-flex items-center min-h-[44px] -my-2"
+                      aria-label="Contactar por WhatsApp al 2346 599278"
+                    >
+                      2346 599278
+                    </a>
+                  </div>
                 </div>
               </div>
 
               {/* Card Ubicación */}
-              <div className={`flex items-start gap-4 p-4 rounded-2xl border sm:col-span-2 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'
-                }`}>
-                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'
-                  }`}>
+              <div className={`flex items-center gap-4 p-4 rounded-2xl border sm:col-span-2 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'}`}>
+                <div className={`p-3 rounded-xl border ${isDark ? 'bg-white/5 border-white/10 text-[#d4ff00]' : 'bg-white border-slate-200 text-[#d4ff00]'}`}>
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-0.5">Ubicación</p>
-                  <p className="text-sm font-semibold">
+                  <p className="text-xs sm:text-sm font-semibold">
                     Chivilcoy, Buenos Aires, Argentina
                   </p>
                 </div>
               </div>
+
+
             </div>
           </div>
 
@@ -119,8 +134,8 @@ const ContactFooter = () => {
                   required
                   placeholder="Tu nombre completo"
                   className={`w-full rounded-xl px-4 py-3 text-sm outline-none border transition-all ${isDark
-                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
-                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                    : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
                     }`}
                 />
               </div>
@@ -136,8 +151,8 @@ const ContactFooter = () => {
                   required
                   placeholder="correo@ejemplo.com"
                   className={`w-full rounded-xl px-4 py-3 text-sm outline-none border transition-all ${isDark
-                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
-                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                    : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
                     }`}
                 />
               </div>
@@ -152,8 +167,8 @@ const ContactFooter = () => {
                   type="tel"
                   placeholder="+54 9 2346..."
                   className={`w-full rounded-xl px-4 py-3 text-sm outline-none border transition-all ${isDark
-                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
-                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                    : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
                     }`}
                 />
               </div>
@@ -169,8 +184,8 @@ const ContactFooter = () => {
                   required
                   placeholder="¿En qué podemos ayudarte?"
                   className={`w-full rounded-xl px-4 py-3 text-sm outline-none border resize-none transition-all ${isDark
-                      ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
-                      : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
+                    ? 'bg-white/5 border-white/10 focus:border-[#d4ff00] text-white placeholder:text-zinc-600'
+                    : 'bg-slate-50 border-slate-200 focus:border-[#d4ff00] text-slate-900 placeholder:text-slate-400'
                     }`}
                 ></textarea>
               </div>

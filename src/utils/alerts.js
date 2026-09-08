@@ -1,6 +1,5 @@
-import Swal from 'sweetalert2';
-
-export const showLoading = () => {
+export const showLoading = async () => {
+  const { default: Swal } = await import('sweetalert2');
   Swal.fire({
     title: 'Enviando...',
     allowOutsideClick: false,
@@ -8,7 +7,8 @@ export const showLoading = () => {
   });
 };
 
-export const showSuccess = () => {
+export const showSuccess = async () => {
+  const { default: Swal } = await import('sweetalert2');
   Swal.fire({
     icon: 'success',
     title: 'Mensaje enviado',
@@ -19,7 +19,8 @@ export const showSuccess = () => {
   });
 };
 
-export const showError = () => {
+export const showError = async () => {
+  const { default: Swal } = await import('sweetalert2');
   Swal.fire({
     icon: 'error',
     title: 'Error al enviar',

@@ -1,9 +1,8 @@
-import React from 'react';
-import { Linkedin } from 'lucide-react';
 import joaco from "../assets/joaco.webp";
 import clara from "../assets/clara.webp";
 import { useNavigation } from '../hooks/useNavigation';
 import { cn } from '@/lib/utils';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin';
 
 export default function AboutUs() {
   const { isDark } = useNavigation();
@@ -14,7 +13,11 @@ export default function AboutUs() {
       designation: "FullStack Developer • Técnica Univ. en Programación",
       imageSrc: clara,
       socialLinks: [
-        { icon: Linkedin, href: "https://www.linkedin.com/in/clara-mino/" }
+        { 
+          icon: Linkedin, 
+          href: "https://www.linkedin.com/in/clara-mino/",
+          label: "Perfil de LinkedIn de Clara Miño"
+        }
       ]
     },
     {
@@ -22,7 +25,11 @@ export default function AboutUs() {
       designation: "FullStack Developer • Técnico Informático",
       imageSrc: joaco,
       socialLinks: [
-        { icon: Linkedin, href: "https://www.linkedin.com/in/joaquin-pavone/" }
+        { 
+          icon: Linkedin, 
+          href: "https://www.linkedin.com/in/joaquin-pavone/",
+          label: "Perfil de LinkedIn de Joaquín Pavone"
+      }
       ]
     }
   ];
@@ -74,6 +81,10 @@ export default function AboutUs() {
                   <img
                     src={member.imageSrc}
                     alt={member.name}
+                    width="144"
+                    height="144"
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                 </div>
@@ -102,9 +113,10 @@ export default function AboutUs() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-[#0077b5] transition-colors"
+                      aria-label={link.label}
+                      className="flex min-h-11 min-w-11 items-center justify-center text-gray-400 hover:text-[#0077b5] transition-colors"
                     >
-                      <link.icon className="h-5 w-5" />
+                      <link.icon className="h-5 w-5" aria-hidden="true"/>
                     </a>
                   ))}
                 </div>
